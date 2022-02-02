@@ -1,0 +1,42 @@
+[
+        {
+          "Name"  : "Anas Jabllah",
+          "Email" : "AnasJabllah@exemple.com",
+          "Phone" : "7305477760",
+          "Number": "1234567305477760",
+          "Date"  : "08-Dec-2021",
+          "icon1" : "<i class= 'bi bi-pen me-3 text-info fs-4'></i>",
+          "icon2" : "<i class='bi bi-archive-fill text-info fs-4'></i>"
+        },
+
+        {
+          "Name"  : "Nasser Sandali",
+          "Email" : "nassersandali@exemple.com",
+          "Phone" : "7305477760",
+          "Number": "1234567305477760",
+          "Date"  : "08-Dec-2021",
+          "icon1" : "<i class= 'bi bi-pen me-3 text-info fs-4'></i>",
+          "icon2" : "<i class='bi bi-archive-fill text-info fs-4'></i>"
+        },
+
+        {
+          "Name"  : "Oussama Souiri",
+          "Email" : "Oussamasouiri@exemple.com",
+          "Phone" : "7305477760",
+          "Number": "1234567305477760",
+          "Date"  : "08-Dec-2021",
+          "icon1" : "<i class= 'bi bi-pen me-3 text-info fs-4'></i>",
+          "icon2" : "<i class='bi bi-archive-fill text-info fs-4'></i>"
+        },
+
+        {
+          "Name"  : "Simo Lghbar",
+          "Email" : "SimoLghbar@exemple.com",
+          "Phone" : "7305477760",
+          "Number": "1234567305477760",
+          "Date"  : "08-Dec-2021",
+          "icon1" : "<i class= 'bi bi-pen me-3 text-info fs-4'></i>",
+          "icon2" : "<i class='bi bi-archive-fill text-info fs-4'></i>"
+        }
+      ]
+    
