@@ -1,3 +1,13 @@
+<?php
+   require_once 'Connection.php';
+   session_start();
+    // if(!(isset($_SESSION['Name']))){
+    //    header("location:index.php");
+    //    exit();
+    // }
+   
+?>
+
 <div class="Sidebar bg-yellow sidenav" id="sidebar-wrapper">
     <div class="sidebar-heading pt-3">
     <div class="border-start border-info border-5 col-12 mb-3 ms-3">
@@ -6,7 +16,7 @@
     <div class="mt-3 d-flex justify-content-center align-items-center flex-column">
         <img class="rounded-circle " src="./images/youcode.png" alt="youcode">
         <div class="d-flex justify-content-center align-items-center flex-column mt-3">
-            <p class="fw-bold fs-4">Admin name</p>
+            <p class="fw-bold fs-4 fw-bold text-uppercase"><?php echo $_SESSION['Name'];?></p>
             <p class="fs-5 text-info">Admin</p>
         </div>
     </div>
@@ -55,7 +65,7 @@
           
         </div>
         <div class="mt-5 bottom d-flex justify-content-center align-items-center">
-          <a href="Dashbord_Admin.php" class="fs-5 text-center text-decoration-none text-dark mt-4 mb-3">Logout
+          <a href="logouat.php" class="fs-5 text-center text-decoration-none text-dark mt-4 mb-3">Logout
             <i class="bi bi-box-arrow-right "></i>
           </a>
         </div>

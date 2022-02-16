@@ -1,5 +1,11 @@
 <?php
     require_once 'Connection.php';
+    session_start();
+    // if(!(isset($_SESSION['username']))){
+    //    header("location: index.php");
+    //    exit();
+    // }
+
     $id = $_GET['show'];
     $results = "SELECT * FROM payments WHERE id = $id";  
     $res = mysqli_query($conn, $results);

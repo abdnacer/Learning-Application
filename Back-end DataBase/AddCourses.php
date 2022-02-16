@@ -1,5 +1,10 @@
 <?php
   require_once 'Connection.php';
+  session_start();
+    // if(!(isset($_SESSION['username']))){
+    //    header("location: index.php");
+    //    exit();
+    // }
 
   if(isset($_POST['save'])){
 		$title = $_POST['title'];

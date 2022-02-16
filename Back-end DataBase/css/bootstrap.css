@@ -7828,6 +7828,11 @@ textarea.form-control-lg {
 .bg-link{
   color: #00C1FE;
 }
+
+.index{
+  z-index: 1;
+}
+
 /* ------------------ */
 
 

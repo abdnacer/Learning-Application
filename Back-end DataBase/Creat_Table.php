@@ -58,5 +58,23 @@
         } else {
           echo "Error creating table: " . $conn->error;
         }
+      
+        // Create Table SignUp
+      $sql = "CREATE TABLE SignUp(
+        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        Name VARCHAR(255) NOT NULL,
+        Prenom VARCHAR(30) NOT NULL,
+        email VARCHAR(20) NOT NULL,
+        Password VARCHAR(50) NOT NULL,
+        ConfermePassword VARCHAR(50) NOT NULL,
+      
+        Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        )";
+      
+        if($conn->query($sql) === TRUE){
+          echo "Table Students created successfully";
+        } else {
+          echo "Error creating table: " . $conn->error;
+        }
 
 ?>

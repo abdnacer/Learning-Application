@@ -1,5 +1,10 @@
 <?php
   require_once 'Connection.php';
+  session_start();
+    // if(!(isset($_SESSION['username']))){
+    //    header("location: index.php");
+    //    exit();
+    // }
 
   if(isset($_POST['save'])){
 		$img = $_POST['img'];
@@ -8,7 +13,7 @@
 		$phone = $_POST['phone'];
 		$number = $_POST['number'];
 
-		$sql = "INSERT INTO `students` (img, name, email, phone, number) 
+		$sql = "INSERT INTO `students`  (img, name, email, phone, number) 
             VALUES ('$img', '$name', '$email', '$phone', '$number')"; 
 
     if(!mysqli_query($conn,$sql)){
@@ -34,7 +39,7 @@
 </head>
 <body>
   <div class="container w-50 pt-5" >
-    <form method="POST">
+    <form method="POST" >
       <div class="form-group mb-3">
         <label for="formFile" class="form-label"></label>
         <input class="form-control shadow-none" type="file" name="img" id="img">

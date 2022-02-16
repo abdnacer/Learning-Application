@@ -1,5 +1,9 @@
 <?php
     require_once 'Connection.php';
+    // if(!(isset($_SESSION['username']))){
+    //    header("location: login.php");
+    //    exit();
+    // }
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +42,6 @@
                         <h1 class="fs-3">Payment Details</h1>
                         <form class="d-flex px-2">
                           <i class="bi bi-arrows-expand fs-5 me-3 text-info"></i>
-                          <a href="AddCourses.php" class="btn btn-outline-success ps-5 pe-5 bg-info text-light border-0" type="submit">ADD NEW PAYMENTS</a>
                         </form>
                     </div>
                   </nav>

@@ -1,5 +1,9 @@
 <?php
     require_once 'Connection.php';
+//     if(!(isset($_SESSION['username']))){
+//        header("location: index.php");
+//        exit();
+//     }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +45,7 @@
 
                     <div class="card bg-card2 flex-column me-3 bodrder-0 border-white p-3" style="width: 16rem;">
                         <i class="bi bi-bookmark fs-1 me-3"></i>
-                        <p class="para">Course</p>
+                        <p class="para fs-3">Course</p>
                         <?php $results = mysqli_query($conn, "SELECT COUNT(*) as councours FROM `courses`");
                         while($course = mysqli_fetch_array($results)){ ?>
                         <p class="card-text info fs-2 text-end fs-2 fw-bold"><?php echo $course['councours']; }?></p>
@@ -49,7 +53,7 @@
               
                     <div class="card bg-card3 flex-column me-3 bodrder-0 border-white p-3" style="width: 16rem;">
                         <i class="bi bi-coin fs-1 me-3"></i>
-                        <p class="para">Payements</p>
+                        <p class="para fs-3">Payements</p>
                         <?php $results = mysqli_query($conn, "SELECT SUM(AmountPaid) as prix FROM `payments`");
                         while($payments = mysqli_fetch_array($results)){ ?>
                         <p class="card-text right text-end fs-2 fw-bold"><span class="fs-5">DHS</span><?php echo $payments['prix']; }?></p>
@@ -57,8 +61,10 @@
               
                     <div class="card bg-card4 flex-column bodrder-0 border-white p-3" style="width: 16rem;">
                         <i class="bi bi-person fs-1 me-3 li  c-light"></i>
-                        <p class="para1">Students</p>
-                        <p class="card-text ri $lightht text-end fs-2 fw-bold">3</p>
+                        <p class="para1 fs-3">Users</p>
+                        <?php $results = mysqli_query($conn, "SELECT COUNT(*) as countuser FROM `signup`");
+                        while($users = mysqli_fetch_array($results)){ ?>
+                        <p class="card-text ri $lightht text-end fs-2 fw-bold"><?php echo $users['countuser']; }?></p>
                     </div>
                 </div>
             </div>
