@@ -1,12 +1,6 @@
 <?php
    require_once 'Connection.php';
-   session_start();
-    // if(!(isset($_SESSION['Name']))){
-    //    header("location:index.php");
-    //    exit();
-    // }
-   
-?>
+   ?>
 
 <div class="Sidebar bg-yellow sidenav" id="sidebar-wrapper">
     <div class="sidebar-heading pt-3">

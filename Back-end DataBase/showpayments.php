@@ -1,10 +1,6 @@
 <?php
     require_once 'Connection.php';
-    session_start();
-    // if(!(isset($_SESSION['username']))){
-    //    header("location: index.php");
-    //    exit();
-    // }
+    require_once 'check_validate.php';
 
     $id = $_GET['show'];
     $results = "SELECT * FROM payments WHERE id = $id";  

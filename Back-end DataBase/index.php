@@ -1,33 +1,29 @@
 <?php
- $error = "";
- if($_SERVER["REQUEST_METHOD"] == "POST"){
-        if(isset($_POST["email"]) && isset($_POST["password"])){
+$erroremail ="";
+$errorpss ="";
+ if(isset($_POST['save'])){
+        if(!empty($_POST["email"]) && !empty($_POST["password"])) {
             require_once 'Connection.php';
             $email = $_POST["email"];
-            $password = strtoupper(hash('sha256',$_POST['password']));
-
-            $query = "SELECT * FROM `signup` WHERE email = '$email' AND Password = '$password'";
+            $password = hash('ripemd160', $_POST['password']);
+            $query = "SELECT * FROM signup WHERE email = '$email' AND Password ='$password'";
             $user = mysqli_query($conn, $query);
             if(mysqli_num_rows($user) != 0 ){
                 session_start();
                 $rsl = mysqli_fetch_assoc($user);
                 $_SESSION['email'] = $rsl['email'];
-                $_SESSION['password'] = $rsl['Password'];
                 $_SESSION['Name'] = $rsl['Name'];
-                // if(isset($_POST['checkcookie'])){
-                //   setcookie('email', $email, time() + 30);
-                // }
+                if(isset($_POST['checkcookie'])){
+                  setcookie('email', $email, time() + 60 * 60 * 24);
+                }
                 header('location: Dashbord_Admin.php');
-            }
-            else{
-                die("error");
             }
         }
 
         else{
-            echo "salam";
-            $error = 'email ou mot de passe incorect';
-          }
+            $erroremail = 'email incorect';
+            $errorpss = 'mot de passe incorect';
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -58,20 +54,17 @@
                           Enter your credentials to access your account 
                       </p>
                   </div>
-                  <?php if($error != ""){ ?>
-                    <div class="alert alert-danger" role="alert">
-                     A simple danger alert—check it out!
-                   </div>
-                   <?php } ?>
-                  <form      method="POST">
+                  <form method="POST">
                       <div class="p-4">
                           <div class="mb-3">
                               <label for="email" class="form-label">Email</label>
-                              <input type="text" class="form-control" placeholder="Enter your email" id="email" name="email">
+                              <input type="text" class="form-control shadow-none " placeholder="Enter your email" id="email" name="email" value=<?php if(isset($_COOKIE['email'])) echo $_COOKIE['email'];?> >
+                              <p class='fs-6 text-danger'><?php echo $erroremail;?></p>
                           </div>
                           <div class="mb-3">
                               <label for="password" class="form-label">Password</label>
-                              <input type="password" class="form-control" placeholder="Enter your password" id="password" name="password">
+                              <input type="password" class="form-control shadow-none" placeholder="Enter your password" id="password" name="password">
+                              <p class='fs-6 text-danger'><?php echo $errorpss;?></p>
                           </div>
 
                           <div class="form-check">
@@ -81,7 +74,7 @@
                             </label>
                             </div>
 
-                          <input type="submit" class="btn bg-button text-center mt-2 w-100 d-flex align-items-center justify-content-center" name="save" value="SIGN IN" >
+                          <input type="submit" class="btn bg-button text-center mt-2 w-100 d-flex align-items-center justify-content-center shadow-none" name="save" value="SIGN IN">
                           <div class="d-flex align-items-center mt-2 flex-column">
                             <a class="bg-link mb-3" href="#">Reset password</a>
                             <a class=" text-decoration-none fw-bold " href="Sign_up.php">Register</a>

@@ -1,5 +1,6 @@
 <?php 
   require_once 'Connection.php';
+  require_once 'check_validate.php';
   $id = $_GET['edit'];
   $results = "SELECT * FROM courses WHERE id = $id";  
   $res = mysqli_query($conn, $results);

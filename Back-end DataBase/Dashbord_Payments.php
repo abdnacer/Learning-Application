@@ -1,9 +1,6 @@
 <?php
     require_once 'Connection.php';
-    // if(!(isset($_SESSION['username']))){
-    //    header("location: login.php");
-    //    exit();
-    // }
+    require_once 'check_validate.php';
 ?>
 
 <!DOCTYPE html>

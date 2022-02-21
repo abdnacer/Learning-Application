@@ -1,24 +1,36 @@
 <?php
   require_once 'Connection.php';
 
+  $error = "";
+  $checkemail = "";
   if(isset($_POST['save'])){
+    if(!empty($_POST["name"]) && !empty($_POST["prenom"]) && !empty($_POST["email"]) && !empty($_POST["password"]) && !empty($_POST["confermepassword"])){
 		$name = $_POST['name'];
 		$prenom = $_POST['prenom'];
 		$email = $_POST['email'];
-		$password = strtoupper(hash('sha256', $_POST['password']));
-		$confermepassword = strtoupper(hash('sha256', $_POST['confermepassword']));
+		$password = hash('ripemd160', $_POST['password']);
+		$confermepassword = hash('ripemd160', $_POST['confermepassword']);
+    if($password === $confermepassword){
+        $sql = "INSERT INTO `Signup` (Name, Prenom, email, Password, ConfermePassword)
+              VALUES ('$name', '$prenom', '$email', '$password', '$confermepassword')"; 
 
-		$sql = "INSERT INTO `Signup` (Name, Prenom, email, Password, ConfermePassword) 
-            VALUES ('$name', '$prenom', '$email', '$password', '$confermepassword')"; 
+        if(!mysqli_query($conn,$sql)){
+            die('impossible d’ajouter cet enregistrement : ' . mysqli_error());
+        }
 
-    if(!mysqli_query($conn,$sql)){
-        die('impossible d’ajouter cet enregistrement : ' . mysqli_error());
+        echo "L’enregistrement est ajouté ";
+
+        header('location: index.php');
+      }
+      else{
+        $error = "password not matched";
+      }
     }
-
-    echo "L’enregistrement est ajouté ";
-
-		header('location: index.php');
-	}
+      else{
+         $checkemail = "All field must be completed";
+      }
+    }
+		
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,26 +53,31 @@
       </div>
       <div class="form-group mb-3">
         <label for="name ">Name</label>
-        <input type="name" class="form-control mt-2" id="name" name="name" placeholder="Enter Name" required>
+        <input type="name" class="form-control mt-2 shadow-none" id="name" name="name" placeholder="Enter Name" >
       </div>
       <div class="form-group mb-3">
         <label for="prenom ">Prenom</label>
-        <input type="name" class="form-control mt-2" id="prenom" name="prenom" placeholder="Enter Prenom" required>
+        <input type="name" class="form-control mt-2 shadow-none" id="prenom" name="prenom" placeholder="Enter Prenom">
       </div>
       <div class="form-group mb-3">
         <label for="email ">Email</label>
-        <input type="email" class="form-control mt-2" id="email" name="email" placeholder="Enter Email" required>
+        <input type="email" class="form-control mt-2 shadow-none" id="email" name="email" placeholder="Enter Email">
       </div>
       <div class="form-group mb-3">
         <label for="password ">Password</label>
-        <input type="password" class="form-control mt-2" id="password" name="password" placeholder="Enter Password" required>
+        <input type="password" class="form-control mt-2 shadow-none" id="password" name="password" placeholder="Enter Password">
+          <p class='fs-6 text-danger'><?php echo $error;?></p>
+          <p class='fs-6 text-danger'><?php echo $checkemail;?></p>
+        
       </div>
       <div class="form-group mb-3">
         <label for="password ">Conferme Password</label>
-        <input type="password" class="form-control mt-2" id="confermepassword" name="confermepassword" placeholder="Enter Password" required>
+        <input type="password" class="form-control mt-2 shadow-none" id="confermepassword" name="confermepassword" placeholder="Enter Conferme Password">
+        <p class='fs-6 text-danger'><?php echo $error;?></p>
+        <p class='fs-6 text-danger '><?php echo $checkemail;?></p>
       </div>
-      <button type="submit" class="btn btn-primary mt-2 px-4" name="save">Submit</button>
-      <a href="index.php" class="btn btn-secondary mt-2 px-3  ">Cancel</a>
+      <button type="submit" class="btn btn-primary mt-2 px-4 shadow-none" name="save">Submit</button>
+      <a href="index.php" class="btn btn-secondary mt-2 px-3 shadow-none ">Cancel</a>
       <div class="d-flex mt-4">
         <p>Already have an account?</p>
         <a class=" text-decoration-none fw-bold ms-1" href="index.php">Login here</a>

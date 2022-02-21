@@ -2,6 +2,7 @@
 
   require_once 'Connection.php';
 
+    // Create Table Students
   $sql = "CREATE TABLE students(
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     img VARCHAR(255) NOT NULL,
@@ -13,7 +14,7 @@
     Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     )";
   
-    if($conn->query($sql) === TRUE){
+    if(!mysqli_query($conn, $sql)){
       echo "Table Students created successfully";
     } else {
       echo "Error creating table: " . $conn->error;
