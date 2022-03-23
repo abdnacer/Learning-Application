@@ -1,6 +1,25 @@
 <?php
     require_once 'Connection.php';
     require_once 'check_validate.php';
+
+    if(isset($_POST['save'])){
+      $title = $_POST['title'];
+      $price = $_POST['price'];
+      $description = $_POST['description'];
+      $dateLancer = $_POST['dateLancer'];
+      $datefin = $_POST['datefin'];
+  
+      $sql = "INSERT INTO `courses` (Title, Price, Description, DateLancement, DateFinish) 
+              VALUES ('$title', '$price', '$description', '$dateLancer', '$datefin')"; 
+  
+      if(!mysqli_query($conn,$sql)){
+          die('impossible d’ajouter cet enregistrement : ' . mysqli_error());
+      }
+  
+      echo "L’enregistrement est ajouté ";
+  
+      header('location: Dashbord_Courses.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +35,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -39,7 +58,7 @@
                     <h1 class="fs-3">Courses</h1>
                     <form class="d-flex px-3">
                       <i class="bi bi-arrows-expand fs-5 me-3"></i>
-                      <a href="AddCourses.php" class="btn btn-outline-success ps-5 pe-5 bg-info text-light border-0" type="submit">ADD NEW COURSE</a>
+                      <button class="btn btn-outline-success ps-5 pe-5 bg-info text-light border-0" type="button" onclick="moddalFormCourse()">ADD NEW COURSE</button>
                     </form>
                 </div>
             </nav>
@@ -79,6 +98,41 @@
           </div>
             </div>
             </div>
+        </div>
+
+        <div id="model_parent_course" class="parent">
+        <div class="models">
+        <form method="POST" id="form">
+          <button onclick="close_Course()" class="btnclose"><i class="bi bi-x-circle fs-3"></i></button>
+          <div class="form-group mb-3">
+          <label for="Title ">Title</label>
+          <input type="name" class="form-control mt-2" id="title" name="title" placeholder="Enter Title Course" style="width:100%">
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="Price">Price</label>
+            <input type="text" class="form-control mt-2" id="price" name="price" placeholder="Enter price" required>
+          </div>
+          
+          <div class="form-group mb-3">
+            <label for="description">Description</label>
+            <input type="text" class="form-control mt-2" id="description" name="description" placeholder="Enter description" required>
+          </div>
+          
+          <div class="form-group mb-3">
+            <label for="DateLancement">Date Lancement</label>
+            <input type="date" class="form-control mt-2" id="DateLancer" name="dateLancer" placeholder="Enter Date Lancement">
+          </div>
+          
+          <div class="form-group mb-3">
+            <label for="DateFinish">Date Finish</label>
+            <input type="date" class="form-control mt-2" id="datefin" name="datefin" placeholder="Enter Date Finish">
+          </div>
+
+          <button type="submit" class="btn btn-primary" name="save">Submit</button>
+          <button type="submit" class="btn btn-secondary ml-2" onclick="close_()">Cancel</button>
+        </form>
+        </div>
         </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>

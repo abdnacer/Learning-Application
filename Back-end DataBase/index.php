@@ -14,7 +14,7 @@ $errorpss ="";
                 $_SESSION['email'] = $rsl['email'];
                 $_SESSION['Name'] = $rsl['Name'];
                 if(isset($_POST['checkcookie'])){
-                  setcookie('email', $email, time() + 60 * 60 * 24);
+                  setcookie('email', $email, time() + 30); //60 * 60 * 24
                 }
                 header('location: Dashbord_Admin.php');
             }
@@ -54,16 +54,20 @@ $errorpss ="";
                           Enter your credentials to access your account 
                       </p>
                   </div>
-                  <form method="POST">
+                  <form method="POST" id="form">
+                  <div class="" id="check_Signup"></div>
                       <div class="p-4">
                           <div class="mb-3">
                               <label for="email" class="form-label">Email</label>
-                              <input type="text" class="form-control shadow-none " placeholder="Enter your email" id="email" name="email" value=<?php if(isset($_COOKIE['email'])) echo $_COOKIE['email'];?> >
+                              <input type="text" class="form-control shadow-none " id="email" placeholder="Enter your email"  name="email" value=<?php if(isset($_COOKIE['email'])) echo $_COOKIE['email'];?> > 
+                              <div class="fs-6 text-danger errorEmail"></div>
                               <p class='fs-6 text-danger'><?php echo $erroremail;?></p>
+                              
                           </div>
                           <div class="mb-3">
                               <label for="password" class="form-label">Password</label>
-                              <input type="password" class="form-control shadow-none" placeholder="Enter your password" id="password" name="password">
+                              <input type="password" class="form-control shadow-none" id="password" placeholder="Enter your password" name="password">
+                              <div class="fs-6 text-danger errorPassword"></div>
                               <p class='fs-6 text-danger'><?php echo $errorpss;?></p>
                           </div>
 
@@ -74,7 +78,7 @@ $errorpss ="";
                             </label>
                             </div>
 
-                          <input type="submit" class="btn bg-button text-center mt-2 w-100 d-flex align-items-center justify-content-center shadow-none" name="save" value="SIGN IN">
+                          <input type="submit" class="btn bg-button text-center mt-2 w-100 d-flex align-items-center justify-content-center shadow-none text-white" name="save" value="SIGN IN">
                           <div class="d-flex align-items-center mt-2 flex-column">
                             <a class="bg-link mb-3" href="#">Reset password</a>
                             <a class=" text-decoration-none fw-bold " href="Sign_up.php">Register</a>
@@ -87,5 +91,7 @@ $errorpss ="";
     </main>
  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/index.js"></script>
+    <!-- <script src="js/scripts.js"></script> -->
   </body>
   </html>
